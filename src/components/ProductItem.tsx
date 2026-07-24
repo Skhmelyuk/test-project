@@ -1,11 +1,12 @@
 import { type Product } from "../types";
+import { memo } from "react";
 
 interface ProductItemProps {
   product: Product;
   onSelect: (product: Product) => void;
 }
 
-export const ProductItem = ({ product, onSelect }: ProductItemProps) => {
+export const ProductItem = memo(({ product, onSelect }: ProductItemProps) => {
   console.log(`🔴 [ProductItem Render]: ID ${product.id}`);
 
   // Штучно додаємо затримку 0.5мс для симуляції складного карткового UI
@@ -26,4 +27,4 @@ export const ProductItem = ({ product, onSelect }: ProductItemProps) => {
       </button>
     </div>
   );
-};
+});

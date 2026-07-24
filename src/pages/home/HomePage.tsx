@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useCallback, useState, useMemo } from "react";
 import { type Product } from "../../types";
 import { ProductList } from "../../components/ProductList";
+import { HomeTitle } from "../../components/HomeTitle";
 
 // Генеруємо 1 000 елементів з явним типом
 const initialProducts: Product[] = Array.from({ length: 1000 }, (_, index) => ({
@@ -15,19 +16,24 @@ export const HomePage = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   // 1. Повільна фільтрація без useMemo
-  console.log("🔍 Фільтрація товарів...");
-  const filteredProducts: Product[] = initialProducts.filter((product) =>
-    product.name.toLowerCase().includes(query.toLowerCase()),
+  console.log("Рендер HomePage");
+
+  const filteredProducts = useMemo<Product[]>(
+    () =>
+      initialProducts.filter((product) =>
+        product.name.toLowerCase().includes(query.toLowerCase()),
+      ),
+    [query],
   );
 
   // 2. Повільна функція без useCallback
-  const handleSelectProduct = (product: Product): void => {
+  const handleSelectProduct = useCallback((product: Product): void => {
     setSelectedProduct(product);
-  };
+  }, []);
 
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-bold text-gray-800">🏠 Каталог товарів</h2>
+      <HomeTitle title="🏠 Каталог товарів" />
 
       <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl flex items-center justify-between">
         <div>
