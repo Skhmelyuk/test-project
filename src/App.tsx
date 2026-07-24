@@ -1,7 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { Layout } from "./pages/layouts/Layout";
-import AnalyticsPage from "./pages/analytics/AnalyticsPage";
-import SettingsPage from "./pages/settings/SettingsPage";
 
 const router = createBrowserRouter([
   {
@@ -12,8 +10,14 @@ const router = createBrowserRouter([
         index: true,
         lazy: async () => await import("./pages/home/HomePage"),
       },
-      { path: "analytics", element: <AnalyticsPage /> },
-      { path: "settings", element: <SettingsPage /> },
+      {
+        path: "analytics",
+        lazy: async () => await import("./pages/analytics/AnalyticsPage"),
+      },
+      {
+        path: "settings",
+        lazy: async () => await import("./pages/settings/SettingsPage"),
+      },
     ],
   },
 ]);
