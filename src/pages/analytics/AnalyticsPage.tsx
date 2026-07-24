@@ -9,4 +9,4 @@ const AnalyticsPage = () => {
   );
 };
 
-export default AnalyticsPage;
+export const Component = AnalyticsPage;
