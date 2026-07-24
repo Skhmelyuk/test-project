@@ -10,7 +10,7 @@ const initialProducts: Product[] = Array.from({ length: 1000 }, (_, index) => ({
   price: Math.floor(Math.random() * 1000) + 10,
 }));
 
-export const HomePage = () => {
+function HomePage() {
   const [count, setCount] = useState<number>(0);
   const [query, setQuery] = useState<string>("");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -74,4 +74,6 @@ export const HomePage = () => {
       />
     </div>
   );
-};
+}
+
+export const Component = HomePage;

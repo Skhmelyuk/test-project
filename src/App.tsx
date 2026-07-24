@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { Layout } from "./pages/layouts/Layout";
-import { HomePage } from "./pages/home/HomePage";
 import AnalyticsPage from "./pages/analytics/AnalyticsPage";
 import SettingsPage from "./pages/settings/SettingsPage";
 
@@ -9,7 +8,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
-      { index: true, element: <HomePage /> },
+      {
+        index: true,
+        lazy: async () => await import("./pages/home/HomePage"),
+      },
       { path: "analytics", element: <AnalyticsPage /> },
       { path: "settings", element: <SettingsPage /> },
     ],
